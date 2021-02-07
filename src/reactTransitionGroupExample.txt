@@ -1,0 +1,90 @@
+import React from "react";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { Button, Form } from "react-bootstrap";
+import "./styles.css";
+
+const modes = ["out-in", "in-out"];
+
+export default function App() {
+  const [mode, setMode] = React.useState("out-in");
+  const [state, setState] = React.useState(true);
+  const [index, setIndex] = React.useState(0);
+
+  const inc = (i, arrLength) => {
+    console.log(index);
+    console.log('inc');
+    if ((i + 1) >= arrLength) {
+      return 0;
+    }
+    return i++;
+  };
+
+  const arr = [
+    <Button onClick={() => setIndex(indexPrev => 1)}>
+      0
+      <span>{mode}</span>
+    </Button>,
+    <Button onClick={() => setIndex(indexPrev => 2)}>
+      1
+      <span>{mode}</span>
+    </Button>,
+    <Button onClick={() => setIndex(indexPrev => 0)}>
+      2
+      <span>{mode}</span>
+    </Button>
+  ];
+
+  return (
+    <>
+      <div className="label">Mode:</div>
+      <div className="modes">
+        {modes.map(m => (
+          <Form.Check
+            key={m}
+            custom
+            inline
+            label={m}
+            id={`mode=msContentScript${m}`}
+            type="radio"
+            name="mode"
+            checked={mode === m}
+            value={m}
+            onChange={event => {
+              setMode(event.target.value);
+            }}
+          />
+        ))}
+      </div>
+      <div className="main">
+        <SwitchTransition mode={mode}>
+          <CSSTransition
+            key={state}
+            addEndListener={(node, done) => {
+              node.addEventListener("transitionend", done, false);
+            }}
+            classNames="fade"
+          >
+            <div className="button-container">
+              <Button onClick={() => setState(state => !state)}>
+                {state ? "Hello, world!" : "Goodbye, world!"}
+              </Button>
+            </div>
+          </CSSTransition>
+        </SwitchTransition>
+        <SwitchTransition mode={mode}>
+          <CSSTransition
+            key={index}
+            addEndListener={(node, done) => {
+              node.addEventListener("transitionend", done, false);
+            }}
+            classNames="fade"
+          >
+            <div className="button-container">
+              {arr[index]}
+            </div>
+          </CSSTransition>
+        </SwitchTransition>
+      </div>
+    </>
+  );
+}

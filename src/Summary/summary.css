@@ -1,0 +1,25 @@
+.summary {
+    /* variables */
+    --color-bg: white;
+}
+
+.summary {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 20px;
+    width: 300px;
+    border: 1px solid var(--color-primary);
+    border-radius: 20px;
+    line-height: 2rem;
+}
+
+.summary__summary-text {
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--color-third);
+    text-align: left;
+    line-height: normal;
+  }
