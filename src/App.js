@@ -1,10 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
-import { SwitchTransition, CSSTransition } from "react-transition-group";
 import AddPeople from './AddPeople/addPeople';
 import AddItems from './AddItems/addItems';
 import WhoSharing from './WhoSharing/whoSharing';
 import WhatCost from './WhatCost/whatCost';
-// import RadioGroup from './RadioGroup/radioGroup';
 import WhoPaid from './WhoPaid/whoPaid';
 import Summary from './Summary/summary';
 import SwitchTransitionContainer from './SwitchTransitionContainer/switchTransitionContainer';
